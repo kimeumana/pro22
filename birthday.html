@@ -3,143 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click Me</title>
+    <title>Happy Birthday Angela!</title>
     <style>
         body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #fce4ec;
             margin: 0;
             padding: 0;
-            background-color: #000;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         
-        .button-container {
-            position: relative;
+        .container {
+            max-width: 800px;
+            padding: 20px;
             text-align: center;
         }
         
-        .click-btn {
-            background-color: #ff4081;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 24px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            box-shadow: 0 0 20px rgba(255, 64, 129, 0.8);
+        h1 {
+            color: #e91e63;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        
+        .cake {
             position: relative;
-            z-index: 10;
-            transition: transform 0.3s, box-shadow 0.3s;
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
         }
         
-        .click-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(255, 64, 129, 1);
-        }
-        
-        .arrow {
+        .cake-base {
             position: absolute;
-            color: #ff4081;
-            font-size: 2rem;
-            animation: point 1s infinite alternate;
+            width: 200px;
+            height: 70px;
+            background-color: #f8bbd0;
+            border-radius: 10px;
+            bottom: 0;
         }
         
-        .arrow-top {
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .arrow-right {
-            top: 50%;
-            right: -50px;
-            transform: translateY(-50%);
-        }
-        
-        .arrow-bottom {
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .arrow-left {
-            top: 50%;
-            left: -50px;
-            transform: translateY(-50%);
-        }
-        
-        @keyframes point {
-            0% { opacity: 0.5; transform: scale(1) translateX(-50%); }
-            100% { opacity: 1; transform: scale(1.2) translateX(-50%); }
-        }
-        
-        @keyframes pointHoriz {
-            0% { opacity: 0.5; transform: scale(1) translateY(-50%); }
-            100% { opacity: 1; transform: scale(1.2) translateY(-50%); }
-        }
-        
-        .arrow-right, .arrow-left {
-            animation: pointHoriz 1s infinite alternate;
-        }
-        
-        .sparkle {
+        .cake-middle {
             position: absolute;
-            width: 5px;
-            height: 5px;
-            background-color: #fff;
-            border-radius: 50%;
+            width: 180px;
+            height: 60px;
+            background-color: #f48fb1;
+            border-radius: 10px;
+            bottom: 70px;
+            left: 10px;
+        }
+        
+        .cake-top {
+            position: absolute;
+            width: 160px;
+            height: 50px;
+            background-color: #f06292;
+            border-radius: 10px;
+            bottom: 130px;
+            left: 20px;
+        }
+        
+        .candle {
+            position: absolute;
+            width: 10px;
+            height: 40px;
+            background-color: #fff59d;
+            bottom: 180px;
+            left: 95px;
+        }
+        
+        .flame {
+            position: absolute;
+            width: 15px;
+            height: 30px;
+            background-color: #ff9800;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            bottom: 220px;
+            left: 92.5px;
+            animation: flicker 1s infinite;
+        }
+        
+        .balloons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            animation: sparkle 1.5s infinite;
         }
         
-        @keyframes sparkle {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0); opacity: 0; }
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        .message-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e91e63;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: transform 0.3s, background-color 0.3s;
+            font-size: 1.2rem;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #c2185b;
+        }
+        
+        /* Heart gallery styles */
+        .heart-gallery {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 50px auto;
+        }
+        
+        .main-photo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 10;
+            border: 5px solid #e91e63;
+            box-shadow: 0 0 20px rgba(233, 30, 99, 0.7);
+            animation: pulse 2s infinite;
+        }
+        
+        .main-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .rotating-photo {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #ff4081;
+            box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+        }
+        
+        .rotating-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes float {
+            0% { 
+                transform: translateY(100vh) translateX(0); 
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-100vh) translateX(20px); 
+                opacity: 0;
+            }
+        }
+        
+        @keyframes flicker {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 20px rgba(233, 30, 99, 0.7);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.05);
+                box-shadow: 0 0 30px rgba(233, 30, 99, 0.9);
+            }
+        }
+        
+        .heart-beat {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
     </style>
 </head>
 <body>
-    <div class="button-container">
-        <div class="arrow arrow-top">⬇️</div>
-        <div class="arrow arrow-right">⬅️</div>
-        <div class="arrow arrow-bottom">⬆️</div>
-        <div class="arrow arrow-left">➡️</div>
-        <a href="birthday.html">
-            <button class="click-btn">Click Me</button>
-        </a>
-    </div>
-
-    <script>
-        // Create sparkles
-        function createSparkles() {
-            const body = document.body;
+    <div class="balloons" id="balloons"></div>
+    
+    <div class="container">
+        <h1>Happy Birthday Angela!</h1>
+        
+        <div class="heart-gallery">
+            <div class="main-photo">
+                <img src="angie1.jpg" alt="Angela" id="main-photo">
+            </div>
+            <div id="heart-photos"></div>
+            <svg class="heart-beat" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path id="heart-path" d="M50,90 C100,65 100,25 50,50 C0,25 0,65 50,90" fill="none" stroke="#ff4081" stroke-width="0.5" opacity="0.3"/>
+            </svg>
+        </div>
+        
+        <div class="cake">
+            <div class="cake-base"></div>
+            <div class="cake-middle"></div>
+            <div class="cake-top"></div>
+            <div class="candle"></div>
+            <div class="flame"></div>
+        </div>
+        
+        <div class="message-container">
+            <h2>Dear Angela,</h2>
+            <p>On this special day, I wanted to celebrate you with this little digital gift!</p>
+            <p>Wishing you a fantastic birthday filled with joy, laughter, and all your favorite things!</p>
+            <p>🎉 May this year bring you amazing adventures and wonderful memories! 🎂</p>
+            <p>With love,</p>
+            <p><em>From Kimeu.Mana</em></p>
             
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'sparkle';
-                    sparkle.style.left = `${Math.random() * 100}%`;
-                    sparkle.style.top = `${Math.random() * 100}%`;
-                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
-                    body.appendChild(sparkle);
-                    
-                    setTimeout(() => {
-                        sparkle.remove();
-                    }, 1500);
-                }, i * 300);
+            <a href="message.html" class="btn">See Your Special Message</a>
+        </div>
+    </div>
+    
+    <script>
+        // Create balloons
+        function createBalloons() {
+            const balloonContainer = document.getElementById('balloons');
+            const colors = ['#e91e63', '#9c27b0', '#3f51b5', '#2196f3', '#4caf50', '#ff9800'];
+            
+            for (let i = 0; i < 30; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.left = ${Math.random() * 100}%;
+                balloon.style.animationDelay = ${Math.random() * 15}s;
+                balloonContainer.appendChild(balloon);
+            }
+        }
+        
+        // Create heart animation with photos
+        function createHeartPhotos() {
+            const heartContainer = document.getElementById('heart-photos');
+            const imagePaths = ['angie2.jpg', 'angie3.jpg', 'angie4.jpg'];
+            const photoCount = 3;
+            const radius = 150; // radius of the heart path
+            
+            for (let i = 0; i < photoCount; i++) {
+                const photo = document.createElement('div');
+                photo.className = 'rotating-photo';
+                photo.innerHTML = <img src="${imagePaths[i % imagePaths.length]}" alt="Angela">;
+                heartContainer.appendChild(photo);
+                
+                // Set initial position
+                animatePhoto(photo, i * (360 / photoCount), radius);
             }
             
-            setTimeout(createSparkles, 15000);
+            // Start animation
+            let angle = 0;
+            setInterval(() => {
+                angle = (angle + 0.5) % 360;
+                
+                const photos = document.querySelectorAll('.rotating-photo');
+                photos.forEach((photo, index) => {
+                    const photoAngle = (angle + index * (360 / photoCount)) % 360;
+                    animatePhoto(photo, photoAngle, radius);
+                });
+            }, 30);
+        }
+        
+        // Position photo along heart path
+        function animatePhoto(element, angle, radius) {
+            // Convert angle to radians for calculation
+            const radian = angle * Math.PI / 180;
+            
+            // Heart shape parametric equations
+            const x = 16 * Math.pow(Math.sin(radian), 3);
+            const y = 13 * Math.cos(radian) - 5 * Math.cos(2*radian) - 2 * Math.cos(3*radian) - Math.cos(4*radian);
+            
+            // Scale and position
+            const scaledX = x * radius / 16;
+            const scaledY = -y * radius / 16;
+            
+            element.style.transform = translate(${scaledX}px, ${scaledY}px);
+        }
+        
+        // Handle image error by showing default image
+        function handleImageError() {
+            const mainPhoto = document.getElementById('main-photo');
+            mainPhoto.onerror = function() {
+                this.src = '/api/placeholder/200/200';
+            };
+            
+            const rotatingPhotos = document.querySelectorAll('.rotating-photo img');
+            rotatingPhotos.forEach(img => {
+                img.onerror = function() {
+                    this.src = '/api/placeholder/80/80';
+                };
+            });
         }
         
         // Initialize
         window.onload = function() {
-            createSparkles();
+            createBalloons();
+            createHeartPhotos();
+            handleImageError();
         };
     </script>
 </body>
