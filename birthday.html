@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Me</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .button-container {
+            position: relative;
+            text-align: center;
+        }
+        
+        .click-btn {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            box-shadow: 0 0 20px rgba(255, 64, 129, 0.8);
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .click-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 64, 129, 1);
+        }
+        
+        .arrow {
+            position: absolute;
+            color: #ff4081;
+            font-size: 2rem;
+            animation: point 1s infinite alternate;
+        }
+        
+        .arrow-top {
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .arrow-right {
+            top: 50%;
+            right: -50px;
+            transform: translateY(-50%);
+        }
+        
+        .arrow-bottom {
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .arrow-left {
+            top: 50%;
+            left: -50px;
+            transform: translateY(-50%);
+        }
+        
+        @keyframes point {
+            0% { opacity: 0.5; transform: scale(1) translateX(-50%); }
+            100% { opacity: 1; transform: scale(1.2) translateX(-50%); }
+        }
+        
+        @keyframes pointHoriz {
+            0% { opacity: 0.5; transform: scale(1) translateY(-50%); }
+            100% { opacity: 1; transform: scale(1.2) translateY(-50%); }
+        }
+        
+        .arrow-right, .arrow-left {
+            animation: pointHoriz 1s infinite alternate;
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1.5s infinite;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <div class="arrow arrow-top">⬇️</div>
+        <div class="arrow arrow-right">⬅️</div>
+        <div class="arrow arrow-bottom">⬆️</div>
+        <div class="arrow arrow-left">➡️</div>
+        <a href="birthday.html">
+            <button class="click-btn">Click Me</button>
+        </a>
+    </div>
+
+    <script>
+        // Create sparkles
+        function createSparkles() {
+            const body = document.body;
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = `${Math.random() * 100}%`;
+                    sparkle.style.top = `${Math.random() * 100}%`;
+                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                    body.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 1500);
+                }, i * 300);
+            }
+            
+            setTimeout(createSparkles, 15000);
+        }
+        
+        // Initialize
+        window.onload = function() {
+            createSparkles();
+        };
+    </script>
+</body>
+</html>
